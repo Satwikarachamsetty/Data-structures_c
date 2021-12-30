@@ -1,0 +1,218 @@
+Double Linked List
+____________________________________________________________________
+
+#include<stdio.h>
+#include<stdlib.h>
+struct node{
+        int data;
+        struct node *prev;
+        struct node *next;
+}*newnode,*temp,*temp1;
+struct node *head=NULL;
+struct node *tail=NULL;
+void create()
+{
+        int value,n,i;
+        printf("enter no of nodes\n");
+        scanf("%d",&n);
+        for(i=0;i<n;i++)
+        {
+                printf("enter the value");
+                scanf("%d",&value);
+                newnode=(struct node*)malloc(sizeof(struct node));
+                newnode->data=value;
+                newnode->prev=NULL;
+                newnode->next=NULL;
+                if(head==NULL)
+                {
+                        head=newnode;
+                        tail=newnode;
+                }
+                else
+                {
+                        tail->next=newnode;
+                        newnode->prev=tail;
+                        tail=newnode;
+                }
+                fflush(stdin);
+        }
+}
+void display()
+{
+        temp=head;
+        printf("the values of list are\n");
+        while(temp!=NULL)
+        {
+                printf("%d ",temp->data);
+                temp=temp->next;
+            
+        }
+}
+void insert_beg()
+{
+        int value;
+        create();
+        display();
+        printf("enter the value:");
+        scanf("%d",&value);
+        newnode=(struct node*)malloc(sizeof(struct node));
+        newnode->data=value;
+        newnode->next=head;
+        head->prev=newnode;
+        newnode->prev=NULL;
+        head=newnode;
+        printf("after insertion at beginnning\n");
+        display();
+}
+void insert_end()
+{
+        create();
+        display();
+        int value;
+        printf("enter the value\n");
+        scanf("%d",&value);
+        newnode=(struct node*)malloc(sizeof(struct node));
+        newnode->data=value;
+        newnode->next=NULL;
+        newnode->prev=tail;
+        tail->next=newnode;
+        tail=newnode;
+        printf("after insertion at ending\n");
+        display();
+}
+void insert_pos()
+{
+        create();
+        display();
+        int pos,value;
+        printf("enter position and value");
+        scanf("%d%d",&pos,&value);
+        newnode=(struct node*)malloc(sizeof(struct node));
+        newnode->data=value;
+        temp=head;
+       for(int i=1;i<pos-1;i++)
+       {
+               temp=temp->next;
+       }
+       newnode->data=value;
+       newnode->prev=temp;
+       newnode->next=temp->next;
+       temp->next=newnode;
+       temp->next->prev=newnode;
+       printf("after insertion at specified position\n");
+       display();
+}
+void del_beg()
+{
+       create();
+       display();
+       temp=head;
+       head=head->next;
+       temp->next=NULL;
+        head->prev=NULL;
+        printf("after deletion at beginng");
+        display();
+}
+void del_end()
+{
+        create();
+        display();
+        temp=tail;
+        tail=tail->prev;
+        temp->prev=NULL;
+        tail->next=NULL;
+        printf("after deletion at ending\n");
+        display();
+}
+void del_pos()
+{
+        create();
+        display();
+        int pos;
+        printf("enter the position to deletion");
+        scanf("%d",&pos);
+        temp=head;
+        for(int i=1;i<pos-1;i++)
+        {
+                temp=temp->next;
+        }
+        temp1=temp->next;
+        temp->next=temp1->next;
+        temp->next->prev=temp;
+        temp1->next=NULL;
+        temp1->prev=NULL;
+        printf("after deletion at specified position");
+        display();
+}
+void count()
+{
+    int c=0;
+    create();
+     temp=head;
+        while(temp!=NULL)
+        {
+                c=c+1;
+                temp=temp->next;
+            
+        }
+       printf("\nCount of no of nodes given is %d",c);
+    
+}
+void reverse()
+{
+    create();
+    display();
+    temp=tail;
+    printf("\nReverse list of given nodes is\n");
+    while(temp!=NULL)
+    {
+        printf("%d ",temp->data);
+        temp=temp->prev;
+     }
+}
+void main()
+{
+        int ch;
+        printf("enter choice\n1-creation and display\n2-insertion at beginning\n3-insertion at ending\n4-insertion at specified position\n5-deletion at beginning\n6-deletion at ending\n7-deletion at position\n8-no of nodes-count\n9-reverse\n");
+        scanf("%d",&ch);
+        if(ch==1)
+        {
+        create();
+        display();
+        }
+        if(ch==2)
+        {
+         insert_beg();
+        }
+        if(ch==3)
+        {
+         insert_end();
+        }
+        if(ch==4)
+        {
+        insert_pos();
+        }
+        if(ch==5)
+        {
+        del_beg();
+        }
+        if(ch==6)
+        {
+        del_end();
+        }
+       if(ch==7)
+      {
+       del_pos();
+     }
+     if(ch==8)
+     {
+         count();
+     }
+     if(ch==9)
+     {
+         reverse();
+     }
+}
+
+_______________________output______________________________________________________________________________
+
