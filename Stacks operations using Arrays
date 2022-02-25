@@ -1,0 +1,73 @@
+___________________________________source code___________________________________________________
+#include<stdio.h>                                                                                   
+#define size 8                                                                                      
+int top=-1,stack[size];                                                                              
+void push()                                                                                         
+{                                                                                                            
+  int element;                                                                                         
+  if(top==size-1)                                                                                             
+  {                                                                                                           
+   printf("stack overflow\n");           
+  }                                                                                            
+  else                                                                                                 
+  {                                                                                                            
+   printf("enter the value\n");                                                                        
+   scanf("%d",&element);                                                                                
+   top++;                                                                                               
+   stack[top]=element;                                                                         
+  }                                                                                           
+}       
+void pop()                                                                                          
+{                                                                                                           
+ int element;                                                                                        
+ if(top==-1)                                                                                         
+ {                                                                                                           
+   printf("stack underflow\n");  
+ }                                                                                                   
+ else                                                                                                
+ {                                                                                                            
+  element=stack[top];                                                                                 
+  printf("popped element is %d\n",element);                                                            
+  top--;                                                                                     
+ }                                                                                          
+}      
+void display()                                                                                      
+{                                                                                                          
+  int i;                                                                                            
+  if(top!=-1)                                                                                        
+  {                                                                                                          
+    for(i=0;i<=top;i++)                                                                               
+   {                                                                                                       
+     printf("%d ",stack[i]);                                                                  
+   }                                                                                          
+  }                                                                                                  
+  else                                                                                            
+  {                                                                                                         
+   printf("Empty stack\n");                                                                                                                                                                        
+  }                                                                            
+}     
+void main()                                                                                         
+{                                                                                                                                                                                                                
+ int top=-1,choice=0;                                                                                                                                                                                                                                                                                     
+ while(choice<4)                                                                                                     
+ {                                                                                                       
+   printf("enter choice\n");                                                                            
+   scanf("%d",&choice);                                                                            
+   if(choice==1)                                                                                       
+   {                                                                                                          
+     push();                                                                                                                                                                                          
+   }                                                                                                  
+   if(choice==2)                                                                                     
+   {                                                                                                         
+     pop();                                                                                                                                                                                           
+   }                                                                                                    
+   if(choice==3)                                                                                   
+    {                                                                                                         
+     display();                                                                                          
+      
+    }                                                                                                                                                                   
+ }                                                                                      
+   printf("\nEnd of stack elements\n");                                                      
+}                                             
+__________________________________________________________output______________________________________________________________________________________________
+1)
