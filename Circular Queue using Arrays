@@ -1,0 +1,188 @@
+Source code:
+
+#include<stdio.h>
+#define size 8
+int q[size];
+int rear = 0;
+int front = 0;
+int c = 0;
+void enqueue()
+{
+        int ele;
+        if(c==size)
+        {
+                printf("queue is full\n");
+        }
+        else
+        {
+                printf("enter element: ");
+                scanf("%d",&ele);
+                q[rear] = ele;
+                rear = (rear+1)%size;
+                c++;
+        }
+}
+void dequeue()
+{
+        int ele;
+        if(c==0 && rear==front)
+        {
+                       printf("queue is empty\n");
+
+        }
+        else
+        {
+                printf("popped element is %d\n",q[front]);
+                front = (front+1)%size;
+                c--;
+        }
+}
+void display()
+{
+        if(rear==front && c==0)
+        {
+                printf("queue is empty\n");
+        }
+        else if(front != rear)
+        {
+         if(rear>front)
+         {
+          for(int i = front;i<rear;i++)
+          {
+                printf("%d ",q[i]);
+          }
+         }
+         if(rear<front)
+         {
+                   for(int i=front;i<size;i++)
+          {
+             printf("%d ",q[i]);
+          }
+         }
+        }
+        else if(rear==front && c!=0)
+        {
+         for(int i=front;i<size;i++)
+         {
+                printf("%d ",q[i]);
+         }
+        }
+        else
+        {
+        return;
+        }
+}
+void main()
+{
+        int ch=0;
+        while(ch<4)
+        {
+                printf("enter choice");
+                scanf("%d",&ch);
+                switch(ch)
+                {
+                case 1:
+                  {
+                        enqueue();
+                        break;
+                  }
+                  case 2:
+                  {
+                        dequeue();
+                        break;
+                  }
+                  case 3:
+                  {
+                        display();
+                        break;
+                  }
+
+                }
+        }
+}
+
+
+__________________________________________________________________output_________________________________________________________________________________________________________
+1)
+enter choice1
+enter element: 12
+enter choice1
+enter element: 23
+enter choice1
+enter element: 34
+enter choice1
+enter element: 45
+enter choice1
+enter element: 56
+enter choice2
+popped element is 12
+enter choice1
+enter element: 67
+enter choice3
+23 34 45 56 67
+_______________________________
+2)
+enter choice1
+enter element: 2
+enter choice1
+enter element: 3
+enter choice1
+enter element: 4
+enter choice1
+enter element: 65
+enter choice1
+enter element: 7
+enter choice1
+enter element: 8
+enter choice1
+enter element: 9
+enter choice1
+enter element: 1
+enter choice1
+queue is full
+enter choice2
+popped element is 2
+enter choice1
+enter element: 3
+enter choice1
+queue is full
+enter choice3
+3 4 65 7 8 9 1
+___________________________________
+3)
+enter choice1
+enter element: 2
+enter choice1
+enter element: 45
+enter choice1
+enter element: 3
+enter choice1
+enter element: 6
+enter choice2
+popped element is 2
+enter choice2
+popped element is 45
+enter choice2
+popped element is 3
+enter choice2
+popped element is 6
+enter choice3
+queue is empty
+__________________________________
+4)
+enter choice1
+enter element: 2
+enter choice3
+2 enter choice1
+enter element: 4
+enter choice1
+enter element: 6
+enter choice2
+popped element is 2
+enter choice2
+popped element is 4
+enter choice2
+popped element is 6
+enter choice2
+queue is empty
+___________________________________
