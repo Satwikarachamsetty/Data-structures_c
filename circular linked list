@@ -1,0 +1,210 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node{
+    int data;
+    struct node *next;
+} *newnode,*temp,*temp1;
+struct node *head=NULL;
+struct node*tail=NULL;
+void create()
+{
+    int value,n,i;
+    printf("enter no of nodes");
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {  
+        printf("enter value");
+        scanf("%d",&value);
+        newnode=(struct node*)malloc(sizeof(struct node));
+        newnode->data=value;
+        newnode->next=NULL;
+        if(head==NULL)
+        {
+            head=newnode;
+            tail=newnode;
+            newnode->next=head;
+        }
+        else
+        {
+            tail->next=newnode;
+            tail=newnode;
+            tail->next=head;
+        }
+       fflush(stdin);
+    }
+}
+void display()
+{
+    temp=head;
+    while(temp->next!=head)
+    {
+        printf("%d ",temp->data);
+        temp=temp->next;
+    }
+    printf("%d ",temp->data);
+}
+void insert_beg()
+{
+    int value;
+    printf("enter value");
+    scanf("%d",&value);
+    newnode=(struct node*)malloc(sizeof(struct node));
+    newnode->data=value;
+    newnode->next=head;
+    tail->next=newnode;
+    head=newnode;
+    printf("After insertion at beginning\n");
+    display();
+ }
+ void insert_end()
+ {
+     int value;
+     printf("\nEnter value to insert at ending\n");
+     scanf("%d",&value);
+     newnode=(struct node*)malloc(sizeof(struct node));
+     newnode->data=value;
+     tail->next=newnode;
+     newnode->next=head;
+     tail=newnode;
+     printf("\nAfter insertion at ending\n");
+     display();
+}
+void insert_pos()
+{
+    int value,pos;
+    printf("Enter value and position");
+    scanf("%d%d",&value,&pos);
+    newnode=(struct node*)malloc(sizeof(struct node));
+    temp=head;
+    for(int i=1;i<pos-1;i++)
+    {
+        temp=temp->next;
+    }
+    newnode->data=value;
+    newnode->next=temp->next;
+    temp->next=newnode;
+    printf("\nAfter inserting at specified position\n");
+    display();
+}
+void del_beg()
+{
+    temp=head;
+    head=head->next;
+    temp->next=NULL;
+    tail->next=head;
+    printf("\nAfter deletion at beginning\n");
+    display();
+}
+void del_end()
+{
+    temp=head;
+    tail->next=NULL;
+    while(temp->next!=tail)
+    {
+        temp=temp->next;
+    }
+    temp->next=head;
+    tail=temp;
+    printf("\nAfter deletion at ending\n");
+    display();
+}
+void del_pos()
+{
+    int pos;
+    printf("\nenter position\n");
+    scanf("%d",&pos);
+    temp=head;
+    for(int i=1;i<pos-1;i++)
+    {
+        temp=temp->next;
+    }
+    temp->next=temp->next->next;
+    printf("\nAfter deletion at specified position\n");
+    display();
+}
+void count()
+{
+    int c=0;
+    temp=head;
+    while(temp!=tail)
+    {  
+        c=c+1;
+        temp=temp->next;
+    }
+    c=c+1;
+    printf("count of no of nodes is %d",c);
+}
+void reverse()
+{
+    temp=NULL;
+    while(head!=tail)
+    {
+        temp1=head->next;
+        head->next=temp;
+        temp=head;
+        head=temp1;
+    }
+    head=temp;
+    display();
+}
+void main()
+{  
+    int choice=0;
+    create();
+    while(choice<10)
+    {
+    printf("enter choice\n");
+    scanf("%d",&choice);
+        
+     switch choice
+     {
+       case 1:
+       {
+           display();
+           break;
+       }
+       case 2:
+       {
+           insert_beg();
+           break;
+       }
+       case 3:
+       {
+           insert_end();
+           break;
+       }
+       case 4:
+       {
+           insert_pos();
+           break;
+       }
+       case 5:
+       {
+           del_beg();
+           break;
+       }
+       case 6:
+       {
+           del_end();
+           break;
+       }
+       case 7:
+       {
+           del_pos();
+           break;
+       }
+       case 8:
+       {
+           count();
+           break;
+       }
+       case 9:
+       {
+           reverse();
+           break;
+       }
+     }
+    }
+}
+output================================================
+
