@@ -1,0 +1,67 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define size 8
+int rear,front,q[size];
+void enqueue()
+{
+    int ele;
+    if(rear==size)
+    {
+      printf("overflow\n");  
+    }
+    else
+    {
+        printf("enter value:");
+        scanf("%d",&ele);
+        q[rear]=ele;
+        rear++;
+    }
+}
+void dequeue()
+{
+    int ele;
+    if(rear==front)
+    {
+      printf("underflow\n");  
+    }
+    else
+    {
+        printf("popped element is: %d ",q[front]);
+        front++;
+    }
+}
+void display()
+{
+    if(rear==front)
+    {
+      printf("empty queue\n");  
+    }
+    else
+    {
+        for(int i=front;i<rear;i++)
+        {
+            printf("%d ",q[i]);
+        }
+    }
+}
+void main()
+{
+    int ch=0;
+    while(ch<4)
+    {
+        printf("enter ch:");
+        scanf("%d",&ch);
+        switch(ch)
+        {
+            case 1:
+                enqueue();
+                break;
+            case 2:
+                dequeue();
+                break;
+            case 3:
+                display();
+                break;
+        }
+    }
+}
