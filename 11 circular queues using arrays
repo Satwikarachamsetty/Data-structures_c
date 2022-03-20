@@ -1,0 +1,94 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define size 4
+int rear=0,front=0,c=0,q[size];
+void enqueue()
+{
+    int ele;
+    if(c==size)
+    {
+      printf("overflow\n");  
+    }
+    else
+    {
+        printf("enter value:");
+        scanf("%d",&ele);
+        q[rear]=ele;
+        rear=(rear+1)%size;
+        c++;
+    }
+}
+void dequeue()
+{
+    int ele;
+    if(rear==front && c==0)
+    {
+      printf("underflow\n");  
+    }
+    else
+    {
+        printf("popped element is: %d ",q[front]);
+        front=(front+1)%size;
+        c--;
+    }
+}
+void display()
+{
+    if(rear==front && c==0)
+    {
+      printf("empty queue\n");  
+    }
+    else if(front!=rear)
+    {
+        if(rear>front)
+        {
+            for(int i=front;i<rear;i++)
+            {
+                printf("%d",q[i]);
+            }
+        }
+        if(rear<front)
+        {
+            for(int i=front;i<size;i++)
+            {
+                   printf("%d",q[i]);
+            }
+            for(int i=0;i<rear;i++)
+            {
+                   printf("%d",q[i]);
+            }
+        }
+    }
+    else if(rear==front && c!=0)
+    {
+         for(int i=front;i<size;i++)
+            {
+                   printf("%d",q[i]);
+            }
+    }
+    else
+    {
+        return;
+    }
+}
+void main()
+{
+    int ch=0;
+    while(ch<4)
+    {
+        printf("enter chw:");
+        scanf("%d",&ch);
+        switch(ch)
+        {
+            case 1:
+                enqueue();
+                break;
+            case 2:
+                dequeue();
+                break;
+            case 3:
+                display();
+                break;
+        }
+    }
+}
