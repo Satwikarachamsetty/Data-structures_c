@@ -1,0 +1,68 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define size 8
+int top =-1,stack[size];
+void push()
+{
+    int ele;
+    if(top==size-1)
+    {
+        printf("stack overflow\n");
+    }
+    else
+    {
+        printf("enter value:");
+        scanf("%d",&ele);
+        top++;
+        stack[top]=ele;
+    }
+}
+void pop()
+{
+    int ele;
+    if(top==-1)
+    {
+        printf("stack underflow\n");
+    }
+    else
+    {
+        ele=stack[top];
+        printf("popped element is: %d\n",ele);
+        top--;
+    }
+}
+void display()
+{
+    if(top!=-1)
+    {
+        for(int i=top;i>=0;i--)
+        {
+            printf("%d",stack[i]);
+        }
+    }
+    else
+    {
+        printf("empty stack\n");
+    }
+}
+void main()
+{
+    int ch=0;
+    while(ch<4)
+    {
+        printf("enter ch:");
+        scanf("%d",&ch);
+        switch(ch)
+        {
+            case 1:
+                push();
+                break;
+            case 2:
+                pop();
+                break;
+            case 3:
+                display();
+                break;
+        }
+    }
+}
