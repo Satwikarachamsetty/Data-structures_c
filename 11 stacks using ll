@@ -1,0 +1,77 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node{
+    int data;
+    struct node* next;
+}*new , *temp,*top=NULL;
+void push()
+{
+    int value;
+    printf("enter the value of node:\n ");
+    scanf("%d",&value);
+    new = (struct node*)malloc(sizeof(struct node));
+    new->data = value;
+    new->next = NULL;
+    if(top==NULL)
+    {
+        top = new;
+    }
+    else
+    {
+        new->next = top;
+        top=new;
+    }
+    printf("element is pushed\n");
+}
+void pop()
+{
+    if(top==NULL)
+    {
+        printf("stack underflow\n");
+    }
+    else
+    {
+        temp=top;
+        top = top->next;
+        temp->next=NULL;
+    }
+    printf("element is popped\n");
+}
+void display()
+{
+    if(top==NULL)
+    {
+        printf("stack is empty\n");
+    }
+    else
+    {
+          temp = top;
+    printf("The values :");
+    while(temp!=NULL)
+    {
+        printf("%d ",temp->data);
+        temp = temp->next;
+    }
+    }
+}
+void main()
+{
+    int ch=0;
+    while(ch<4)
+    {
+        printf("enter ch:");
+        scanf("%d",&ch);
+        switch(ch)
+        {
+            case 1:
+                push();
+                break;
+            case 2:
+                pop();
+                break;
+            case 3:
+                display();
+                break;
+        }
+    }
+}
