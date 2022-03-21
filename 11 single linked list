@@ -1,0 +1,248 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node{
+    int data;
+    struct node* next;
+}*new , *temp ,*temp1,*temp2 ;
+struct node* head = NULL;
+struct node* tail = NULL;
+
+void create()
+{
+    int value,n;
+    printf("enter no of nodes: ");
+    scanf("%d",&n);
+    for(int i=0;i<n;i++)
+    {
+      printf("enter the value of node:\n ");
+      scanf("%d",&value);
+      new = (struct node*)malloc(sizeof(struct node));
+      new->data = value;
+      new->next = NULL;
+      if(head==NULL)
+      {
+          head = new;
+          tail = new;
+      }
+      else
+      {
+         tail->next = new;
+         tail = new;
+      }
+    }
+}
+    
+void display()
+{
+    temp = head;
+    printf("The values :");
+    while(temp!=NULL)
+    {
+        printf("%d ",temp->data);
+        temp = temp->next;
+    }
+}
+
+void insert_beg()
+{
+    int value;
+    printf("enter value:");
+    scanf("%d",&value);
+    new = (struct node*)malloc(sizeof(struct node));
+    new->data = value;
+    new->next =head;
+    head = new;
+    printf("after insertion at beginning:\n");
+    display();
+}
+void insert_end()
+{
+    int value;
+    printf("enter value:");
+    scanf("%d",&value);
+    new = (struct node*)malloc(sizeof(struct node));
+    new->data = value;
+    new->next =NULL;
+    tail->next = new;
+    tail = new;
+    printf("after insertion at ending:\n");
+    display();
+}
+void insert_pos()
+{
+   int value,pos;
+   temp =head;
+    printf("enter value:");
+    scanf("%d",&value);
+    printf("enter pos:");
+    scanf("%d",&pos);
+    new = (struct node*)malloc(sizeof(struct node));
+    for(int i=1;i<pos-1;i++)
+    {
+       temp = temp->next; 
+    }
+    new->data = value;
+    new->next = temp->next;
+    temp->next = new;
+    printf("after insertion at specified position:\n");
+    display();
+}
+void del_beg()
+{
+    temp = head;
+    head = head->next;
+    temp->next = NULL;
+    printf("after deletion at beginning:\n");
+    display();
+}
+void del_end()
+{
+    temp = head;
+    while(temp->next!=tail)
+    {
+        temp = temp->next;
+    }
+    temp->next=NULL;
+    tail=temp;
+    printf("after deletion at ending:\n");
+    display();
+}
+void del_pos()
+{
+    int pos;
+    printf("enter position:");
+    scanf("%d",&pos);
+    temp =head;
+    for(int i=1;i<pos-1;i++)
+    {
+        temp =temp->next;
+    }
+    temp->next = temp->next->next;
+    printf("after deletion at pos:\n");
+    display();
+}
+void count()
+{
+    int count=0;
+    temp = head;
+    printf("The values :");
+    while(temp!=NULL)
+    {
+       temp = temp->next;
+       count++;
+    }
+    printf("no of nodes is: %d",count);
+}
+void reverse()
+{
+    temp = NULL;
+    while(head!=NULL)
+    {
+        temp1 = head->next;
+        head->next = temp;
+        temp= head;
+        head = temp1;
+    }
+    head = temp;
+    display();
+}
+void sort()
+{
+    int value;
+    temp = head;
+    for(temp1=temp;temp1->next!=NULL;temp1=temp1->next)
+    {
+       for(temp2=temp1->next;temp2!=NULL;temp2=temp2->next) 
+       {
+           if(temp1->data>temp2->data)
+           {
+               value = temp1->data;
+               temp1->data = temp2->data;
+               temp2->data = value;
+           }
+       }
+    }
+    printf("after sorting: ");
+    display();
+}
+void search()
+{
+    int ele;
+    int count =0;
+    printf("enter element to search:");
+    scanf("%d",&ele);
+    temp=head;
+    while(temp!=NULL)
+    {
+        if(temp->data == ele)
+        {
+           count =1;
+           break;
+        }
+        else
+        {
+            temp = temp->next;
+        }
+    }
+    if(count==1)
+    {
+        printf("found");
+    }
+    else{
+        printf("not found");
+    }
+}
+void main()
+{
+    int ch=0;
+    create();
+    while(ch<12)
+    {
+        printf("enter ch:");
+        scanf("%d",&ch);
+        switch(ch)
+        {
+            case 1:
+                display();
+                break;
+            case 2:
+                insert_beg();
+                break;
+            case 3:
+                insert_end();
+                break;
+            case 4:
+                insert_pos();
+                break;
+            case 5:
+                del_beg();
+                break;
+            case 6:
+                del_end();
+                break;
+            case 7:
+                del_pos();
+                break;
+            case 8:
+                count();
+                break;
+            case 9:
+                reverse();
+                break;
+            case 10:
+                sort();
+                break;
+            case 11:
+                search();
+                break;
+            
+            
+        }
+    }
+}
+
+
+
+
+
+
